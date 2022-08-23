@@ -1,0 +1,3 @@
+[submodule "tlpages"]
+	path = tlpages
+	url = git@github.com:Andre-LA/tlpages.git
