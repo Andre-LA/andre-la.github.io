@@ -20,5 +20,5 @@ local page = (
 local html = table.concat({ DOCTYPE:render(), page:render() }, '\n')
 
 io.open('docs/index.html', 'w')
-  :write(html)
+  :write(html..'\n')
   :close()

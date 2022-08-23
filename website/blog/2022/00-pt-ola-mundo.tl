@@ -13,9 +13,10 @@ end
 
 return quick 'div' (
   {
-    date('Terça', 23, 'Agosto', 2022, 1, 27),
+    date('Terça', 23, 'Agosto', 2022, 1, 34),
     quick 'h1' 'Olá mundo!',
-    quick 'strong' [[Sejam bem-vindes ao meu humilde blog, não repara na bagunça... Ou neste caso de sua total ausência.]],
+    quick 'p' [[Sejam bem-vindes ao meu humilde blog, não repara na bagunça... Ou neste caso de sua total ausência.]],
+    quick 'p' [[Note: I'm still building this website]],
   },
   {
     id = 'post-content'
