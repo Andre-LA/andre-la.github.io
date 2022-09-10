@@ -1,0 +1,96 @@
+/*** PAGE ***/
+
+body {
+  font-family: "Iosevka Slab Web", serif;
+  background-color: #200;
+}
+
+article {
+  color: #200;
+}
+
+body > article {
+  background-color: #fda;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+/*** CONTENT ***/
+
+/* Headers */
+
+h1 {
+  font-family: "Zilla Slab Web", serif;
+}
+
+h2 {
+  font-family: "Zilla Slab Web", serif;
+}
+
+/* Tables */
+
+table {
+  border-spacing: 0;
+  border: #a31 solid 1px;
+  border-radius: 0.15rem;
+}
+
+tr {
+  mix-blend-mode: multiply;
+}
+
+tr:nth-child(odd) {
+  background-color: #eee;
+}
+
+tr:nth-child(even) {
+  background-color: #ddd;
+}
+
+th {
+  padding: 0.75rem;
+  border-bottom: 1px dashed #b53;
+}
+
+td, th {
+  border-right: 1px dashed #b53;
+}
+
+th:nth-last-child(1), td:nth-last-child(1) {
+  border-right: none;
+}
+
+td {
+  padding: 0.5rem;
+}
+
+td:nth-last-child(1) {
+  border-top: 1px dashed #b53;
+}
+
+td:nth-child(1) {
+  text-align: center;
+}
+
+/* Anchors */
+
+a {
+  font-family: "Zilla Slab Web", serif;
+  font-weight: 500;
+  font-size: 1.1em;
+  color: #d00;
+}
+
+a:visited {
+  color: #800;
+}
+
+a:focus, a:hover {
+  font-weight: bold;
+}
+
+a:active {
+  border: dashed 2px;
+}
+
+
