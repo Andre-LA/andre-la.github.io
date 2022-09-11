@@ -10,6 +10,44 @@ local e = {
   end,
 }
 
+local tech_anchors: {string : Element} = {
+  ["Unity"]  = e.a([[Unity]], "https://unity.com/"),
+  ["Nelua"]  = e.a([[Nelua]], "https://nelua.io/"),
+  ["WASM-4"] = e.a([[WASM-4]], "https://wasm4.org/"),
+  ["Raylib"] = e.a([[Raylib]], "https://www.raylib.com/"),
+}
+
+local function game_element(name: string, src_code: string, description: string, techs: {string}, links: { {string, string} }): Element
+  local link_td: Element | string;
+  local link_elements: {Element} = {}
+  local tech_elements: {Element} = {};
+
+  if links then
+    link_elements = {}
+    for _, link in ipairs(links) do
+      table.insert(link_elements, e.a(link[1], link[2]))
+      table.insert(link_elements, e.br)
+    end
+    table.remove(link_elements)
+
+    link_td = quick 'td' {
+      table.unpack(link_elements)
+    }
+  else
+    link_td = quick 'td' [[ --- ]]
+  end
+
+  for _, tech in ipairs(techs) do
+    table.insert(tech_elements, (assert(tech_anchors[tech], "Unknown tech: " .. tech)) )
+  end
+
+  return quick 'tr' {
+    ( not src_code and quick 'td' (name) or quick 'td' { e.a(name, src_code) } ),
+    quick 'td' (description),
+    quick 'td' { table.unpack(tech_elements) },
+    link_td
+  }
+end
 
 local my_games_table = quick 'div' {
   quick 'table' {
@@ -20,75 +58,105 @@ local my_games_table = quick 'div' {
       quick 'th' [[Links]],
     },
 
-    quick 'tr' {
-      quick 'td' [[Octo Gravity]],
-      quick 'td' [[Jump and run in an octagon full of obstacles and overcome your own records]],
-      quick 'td' { e.a([[Unity]], "https://unity.com/") },
-      quick 'td' { e.a([[Itch.io]], "https://origamisword.itch.io/octo-gravity"), e.br, e.a([[Steam]], "https://store.steampowered.com/app/865800/Octo_Gravity/") },
-    },
+    game_element(
+      [[Octo Gravity]],
+      nil,
+      [[Jump and run in an octagon full of obstacles and overcome your own records]],
+      { [[Unity]] },
+      {
+        { [[Itch.io]], "https://origamisword.itch.io/octo-gravity" } ,
+        { [[Steam]], "https://store.steampowered.com/app/865800/Octo_Gravity/" } ,
+      }
+    ),
 
-    quick 'tr' {
-      quick 'td' { e.a([[On Rails]], "https://github.com/Andre-LA/GGJ-BaixadaSantista-2021") },
-      quick 'td' [[Be lost on subways, guided by your grandma's messages on your smartphone]],
-      quick 'td' { e.a([[Unity]], "https://unity.com/") },
-      quick 'td' { e.a([[Download]], "https://globalgamejam.org/2021/games/rails-1"), e.br, e.a([[Video]], "https://youtu.be/rV-rSyMBgLQ"), e.br, e.a([[GGJ-2021 Jam]], "https://globalgamejam.org/2021/jam-sites/ggj-baixada-santista-usjtunimonte") },
-    },
+    game_element(
+      [[On Rails]],
+      "https://github.com/Andre-LA/GGJ-BaixadaSantista-2021",
+      [[Be lost on subways, guided by your grandma's messages on your smartphone]],
+      { [[Unity]] },
+      {
+        { [[Download]], "https://globalgamejam.org/2021/games/rails-1" },
+        { [[Video]], "https://youtu.be/rV-rSyMBgLQ" },
+        { [[GGJ-2021 Jam]], "https://globalgamejam.org/2021/jam-sites/ggj-baixada-santista-usjtunimonte" },
+      }
+    ),
 
-    quick 'tr' {
-      quick 'td' { e.a([[Micro Quest]], "https://github.com/Andre-LA/micro-quest") },
-      quick 'td' [["The Knight" was given the mission to eliminate all the slimes that are infesting the tower]],
-      quick 'td' { e.a([[Nelua]], "https://nelua.io/"), e.br, e.a([[WASM-4]], "https://wasm4.org/") },
-      quick 'td' { e.a([[Play]], "https://andre-la.itch.io/micro-quest"), e.br, e.a([[WASM-4 Jam]], "https://itch.io/jam/wasm4") },
-    },
+    game_element(
+      [[Micro Quest]],
+      "https://github.com/Andre-LA/micro-quest",
+      [["The Knight" was given the mission to eliminate all the slimes that are infesting the tower]],
+      { [[Nelua]], [[WASM-4]] },
+      {
+        { [[Play]], "https://andre-la.itch.io/micro-quest" },
+        { [[WASM-4 Jam]], "https://itch.io/jam/wasm4" },
+      }
+    ),
 
-    quick 'tr' {
-      quick 'td' { e.a([[Totally not Sumo]], "https://github.com/Andre-LA/totally-not-sumo") },
-      quick 'td' [[Push your opponents out, while dealing with an controller duality]],
-      quick 'td' { e.a([[Nelua]], "https://nelua.io/"), e.br, e.a([[WASM-4]], "https://wasm4.org/") },
-      quick 'td' { e.a([[Play]], "https://origamisword.itch.io/totally-not-sumo"), e.br, e.a([[GGJ-2022 Jam]], "https://globalgamejam.org/2022/jam-sites/global-game-jam-2022-%E2%80%93-baixada-santista-unisantos") },
-    },
+    game_element(
+      [[Totally not Sumo]],
+      "https://github.com/Andre-LA/totally-not-sumo",
+      [[Push your opponents out, while dealing with an controller duality]],
+      { [[Nelua]], [[WASM-4]] },
+      {
+        { [[Play]], "https://origamisword.itch.io/totally-not-sumo" },
+        { [[GGJ-2022 Jam]], "https://globalgamejam.org/2022/jam-sites/global-game-jam-2022-%E2%80%93-baixada-santista-unisantos" },
+      }
+    ),
 
-    quick 'tr' {
-      quick 'td' { e.a([[Castle Escape]], "https://github.com/Andre-LA/baixada-game-jam-game") },
-      quick 'td' [[Help the princess to escape from castle]],
-      quick 'td' { e.a([[Nelua]], "https://nelua.io/"), e.br, e.a([[Raylib]], "https://www.raylib.com/") },
-      quick 'td' { e.a([[Play]], "https://andre-la.github.io/baixada-game-jam-game/index.html"), e.br, e.a([[Baixada Game Jam]], "https://itch.io/jam/baixada-gamejam") },
-    },
+    game_element(
+      [[Castle Escape]],
+      "https://github.com/Andre-LA/baixada-game-jam-game",
+      [[Help the princess to escape from castle]],
+      { [[Nelua]], [[Raylib]] },
+      {
+        { [[Play]], "https://andre-la.github.io/baixada-game-jam-game/index.html" },
+        { [[Baixada Game Jam]], "https://itch.io/jam/baixada-gamejam" },
+      }
+    ),
 
-    quick 'tr' {
-      quick 'td' { e.a([[Nhóm Nhóm]], "https://github.com/unimonte-games/nhom-nhom") },
-      quick 'td' [[Control a slime pirate waiter, serve slimes customers and deliver their respective orders]],
-      quick 'td' { e.a([[Unity]], "https://unity.com/") },
-      quick 'td' { e.a([[Download]], "https://andre-la.itch.io/nhom-nhom") },
-    },
+    game_element(
+      [[Nhóm Nhóm]],
+      "https://github.com/unimonte-games/nhom-nhom",
+      [[Control a slime pirate waiter, serve slimes customers and deliver their respective orders]],
+      { [[Unity]] },
+      {
+        { [[Download]], "https://andre-la.itch.io/nhom-nhom" },
+      }
+    ),
 
-    quick 'tr' {
-      quick 'td' { e.a([[Lunar Lander]], "https://github.com/nicolas-ft/LunarLander") },
-      quick 'td' [[Lunar Lander clone]],
-      quick 'td' { e.a([[Unity]], "https://unity.com/") },
-      quick 'td' [[ -- ]],
-    },
+    game_element(
+      [[Lunar Lander]],
+      "https://github.com/nicolas-ft/LunarLander",
+      [[Lunar Lander clone]],
+      { [[Unity]] },
+      nil
+    ),
 
-    quick 'tr' {
-      quick 'td' { e.a([[Festa dos Duendes]], "https://github.com/unimonte-games/festa-dos-duendes") },
-      quick 'td' [[Local multiplayer party game]],
-      quick 'td' { e.a([[Unity]], "https://unity.com/") },
-      quick 'td' [[ -- ]],
-    },
+    game_element(
+      [[Festa dos Duendes]],
+      "https://github.com/unimonte-games/festa-dos-duendes",
+      [[Local multiplayer party game]],
+      { [[Unity]] },
+      nil
+    ),
 
-    quick 'tr' {
-      quick 'td' { e.a([[Space Pigs Revolution]], "https://github.com/unimonte-games/space-pigs-revolution") },
-      quick 'td' [[Shoot'em up game]],
-      quick 'td' { e.a([[Unity]], "https://unity.com/") },
-      quick 'td' { e.a([[Play]], "https://unimonte-games.github.io/space-pigs-revolution/index.html") },
-    },
+    game_element(
+      [[Space Pigs Revolution]],
+      "https://github.com/unimonte-games/space-pigs-revolution",
+      [[Shoot'em up game]],
+      { [[Unity]] },
+      {
+        { [[Play]], "https://unimonte-games.github.io/space-pigs-revolution/index.html" },
+      }
+    ),
 
-    quick 'tr' {
-      quick 'td' { e.a([[Akangatu (digital version)]], "https://github.com/unimonte-games/jogo-akangatu-digital") },
-      quick 'td' [[Memory game]],
-      quick 'td' { e.a([[Unity]], "https://unity.com/") },
-      quick 'td' [[ -- ]],
-    },
+    game_element(
+      [[Akangatu (digital version)]],
+      "https://github.com/unimonte-games/jogo-akangatu-digital",
+      [[Memory game]],
+      { [[Unity]] },
+      nil
+    ),
 
     quick 'tr' {
       quick 'td' ({ e.a([[All Games]], "https://github.com/stars/Andre-LA/lists/all-my-games") }, { colspan=4 })
