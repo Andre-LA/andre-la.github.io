@@ -14,7 +14,7 @@ function libpage.save_page(title: string, element_tree: Element, filepath: strin
     quick 'html' {
       quick 'head' {
         quick 'meta' (nil, {charset = 'utf-8'}),
-        quick 'meta' (nil, {name="viewport", content="width=device-width, initial-scale=1"}),
+        -- quick 'meta' (nil, {name="viewport", content="width=device-width, initial-scale=1"}),
         quick 'title' (title),
         quick 'link' (nil, {rel="icon", href="favicon.ico", type="image/x-icon"}),
         quick 'link' (nil, {rel="stylesheet", href="/style.css"}),
