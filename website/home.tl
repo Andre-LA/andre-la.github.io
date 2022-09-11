@@ -39,7 +39,9 @@ local function game_element(name: string, src_code: string, description: string,
 
   for _, tech in ipairs(techs) do
     table.insert(tech_elements, (assert(tech_anchors[tech], "Unknown tech: " .. tech)) )
+    table.insert(tech_elements, e.br)
   end
+  table.remove(tech_elements)
 
   return quick 'tr' {
     ( not src_code and quick 'td' (name) or quick 'td' { e.a(name, src_code) } ),
@@ -203,8 +205,8 @@ local my_libraries_table = quick 'table' {
 }
 
 return quick 'article' {
-  quick 'h1' [[Hi! I'm Andre-LA]],
-  quick 'p' [[I'm a game developer from Brazil 🇧🇷! Welcome to my website!]],
+  quick 'h1' ([[Hi! I'm Andre-LA]], {align="center"}),
+  quick 'p' ( { [[Game developer]], e.br, [[from Brazil]] }, {align="center"} ),
 
   quick 'h2' [[My Games:]],
   my_games_table,
