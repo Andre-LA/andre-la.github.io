@@ -15,6 +15,7 @@ local tech_anchors: {string : Element} = {
   ["Nelua"]  = e.a([[Nelua]], "https://nelua.io/"),
   ["WASM-4"] = e.a([[WASM-4]], "https://wasm4.org/"),
   ["Raylib"] = e.a([[Raylib]], "https://www.raylib.com/"),
+  ["SGDK"]   = e.a([[SGDK]], "https://github.com/Stephane-D/SGDK/"),
 }
 
 local function game_element(name: string, src_code: string, description: string, techs: {string}, links: { {string, string} }): Element
@@ -79,7 +80,18 @@ local my_games_table = quick 'div' {
       {
         { [[Download]], "https://globalgamejam.org/2021/games/rails-1" },
         { [[Video]], "https://youtu.be/rV-rSyMBgLQ" },
-        { [[GGJ-2021 Jam]], "https://globalgamejam.org/2021/jam-sites/ggj-baixada-santista-usjtunimonte" },
+        { [[GGJ 2021 Jam]], "https://globalgamejam.org/2021/jam-sites/ggj-baixada-santista-usjtunimonte" },
+      }
+    ),
+
+    game_element(
+      [[Tapioca Hunter]],
+      "https://github.com/danilobezerra/tapioca-hunter",
+      [[Hunt for tapiocas, but beware! There are ghosts around!]],
+      { [[SGDK]]  },
+      {
+        { [[Download]], "https://danilobezerra.itch.io/tapioca-hunter" },
+        { [[GGJ 2023 Jam]], "https://globalgamejam.org/2023/jam-sites/etec-arist%C3%B3teles-ferreira" },
       }
     ),
 
@@ -101,7 +113,7 @@ local my_games_table = quick 'div' {
       { [[Nelua]], [[WASM-4]] },
       {
         { [[Play]], "https://origamisword.itch.io/totally-not-sumo" },
-        { [[GGJ-2022 Jam]], "https://globalgamejam.org/2022/jam-sites/global-game-jam-2022-%E2%80%93-baixada-santista-unisantos" },
+        { [[GGJ 2022 Jam]], "https://globalgamejam.org/2022/jam-sites/global-game-jam-2022-%E2%80%93-baixada-santista-unisantos" },
       }
     ),
 
