@@ -40,8 +40,8 @@ local record libblog
     hour: integer
     minute: integer
 
-    new: function(day_in_week: DayInWeek, day: integer, month: Month, year: integer, hour: integer, minute: integer)
-    to_element: function(self: Date, lang: string)
+    new: function(day_in_week: DayInWeek, day: integer, month: Month, year: integer, hour: integer, minute: integer): Date
+    to_element: function(self: Date, lang: string): Element
   end
 end
 

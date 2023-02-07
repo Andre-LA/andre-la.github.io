@@ -223,7 +223,7 @@ return quick 'article' {
   quick 'ul' {
     quick 'li' { quick 'a' ([[Github]], { href = "https://github.com/Andre-LA/"}) },
     quick 'li' { quick 'a' ([[Itch.io]], { href = "https://andre-la.itch.io/"}) },
-    quick 'li' { quick 'a' ([[Gamedev.place (mastodon)]], { href = "https://mastodon.gamedev.place/@Andre_LA"}) },
+    quick 'li' { quick 'a' ([[Gamedev.place (mastodon)]], { href = "https://mastodon.gamedev.place/@Andre_LA", rel="me"}) },
     quick 'li' { quick 'a' ([[Twitter]], { href = "https://twitter.com/andre_la_devlog"}) },
   },
 }
